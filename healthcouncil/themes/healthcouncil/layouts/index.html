@@ -5,17 +5,22 @@
 				<p>Due to fundamental security issues, the Health Council of Canada website had to be taken offline.</p> 
 				<p>The Internet Archive has preserved copies available <a href="https://web.archive.org/web/*/healthcouncilcanada.ca">here</a>.</p>
 				<p>Content from the Health Innovation Portal has been added to <a href="http://www.accreditation.ca/leading-practices" target="_blank"> Accreditation Canada’s Leading Practices Database</a>.</p>
-			</div>		
-			<ul>
+				<hr>
+				<p>Le Conseil canadien de la santé n'est plus en service.</p>
+				<p>La bibliothèque de l'Université Carleton a archivé le site Web du Counseil, mais à cause des problèmes de sécurité, ce site a été supprimé. </p>
+				<p>Une version sécure du site anglais est maintenant disponible. </p>
+				<p>Pendant que nous nous efforçons de restaurer le site français de façon sécuritaire, <a href="https://web.archive.org/web/*/conseilcanadiendelasante.ca">vous pouvez accéder des versions du site via l'Internet Archive.</a></p>
+			</div>
 			<div id="homepage-listing">
-			{{- $paginator := .Paginate .Data.Pages.ByDate.Reverse }}
-			{{ range $paginator.Pages }}
-			        <li>
-			                <h2><a href="{{ .Permalink }}">{{ .Title | title }}</a></h2>
-					<div>{{ .Section | humanize | title }}</div>
-			                <time>{{ .Date.Format "2006-01-02" }}</time>
-			        </li>
-			{{ end }}
-			</ul>
+				<h2>All Archived Content</h2>
+				<ul>
+				{{- $paginator := .Paginate .Data.Pages.ByDate.Reverse -}}
+				{{- range $paginator.Pages }}
+					<li>
+{{ partial "metadata.html" . }}
+					</li>
+				{{- end }}
+				</ul>
 {{ partial "pagination.html" . }}
+			</div>
 {{ partial "footer.html" . }}

@@ -2345,55 +2345,49 @@
   </url>
   
   <url>
-    <loc>http://localhost:8080/categories/aboriginal-health/</loc>
+    <loc>http://localhost:8080/themes/aboriginal-health/</loc>
     <lastmod>2013-11-28T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8080/categories/access-and-wait-times/</loc>
+    <loc>http://localhost:8080/themes/access-and-wait-times/</loc>
     <lastmod>2014-01-28T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8080/categories/access-to-care-in-the-north/</loc>
+    <loc>http://localhost:8080/themes/access-to-care-in-the-north/</loc>
     <lastmod>2013-05-23T00:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8080/categories/</loc>
-    <lastmod>2013-11-28T00:00:00-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:8080/categories/electronic-health-records/</loc>
+    <loc>http://localhost:8080/themes/electronic-health-records/</loc>
     <lastmod>2014-01-28T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8080/categories/health-council-tools/</loc>
+    <loc>http://localhost:8080/themes/health-council-tools/</loc>
     <lastmod>2013-10-29T00:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8080/categories/health-human-resources/</loc>
+    <loc>http://localhost:8080/themes/health-human-resources/</loc>
     <lastmod>2014-01-28T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8080/categories/health-promotion/</loc>
+    <loc>http://localhost:8080/themes/health-promotion/</loc>
     <lastmod>2014-01-28T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8080/categories/health-status-and-health-outcomes/</loc>
+    <loc>http://localhost:8080/themes/health-status-and-health-outcomes/</loc>
     <lastmod>2013-09-18T00:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
@@ -2404,19 +2398,13 @@
   </url>
   
   <url>
-    <loc>http://localhost:8080/categories/home-and-community-care/</loc>
+    <loc>http://localhost:8080/themes/home-and-community-care/</loc>
     <lastmod>2013-05-23T00:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8080/types/other/</loc>
-    <lastmod>2014-01-28T00:00:00-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:8080/categories/pharmaceuticals-management/</loc>
+    <loc>http://localhost:8080/themes/pharmaceuticals-management/</loc>
     <lastmod>2014-01-28T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
@@ -2440,7 +2428,7 @@
   </url>
   
   <url>
-    <loc>http://localhost:8080/categories/primary-health-care/</loc>
+    <loc>http://localhost:8080/themes/primary-health-care/</loc>
     <lastmod>2014-03-19T00:00:00-04:00</lastmod>
     <priority>0</priority>
   </url>
@@ -2456,7 +2444,19 @@
   </url>
   
   <url>
+    <loc>http://localhost:8080/themes/</loc>
+    <lastmod>2013-11-28T00:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://localhost:8080/types/</loc>
+    <lastmod>2012-05-15T00:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:8080/types/uncategorized/</loc>
     <lastmod>2014-01-28T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>

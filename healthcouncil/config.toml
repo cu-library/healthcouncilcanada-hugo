@@ -7,5 +7,5 @@ sectionPagesMenu = "sections"
 paginate = 25
 
 [taxonomies]
-  category = "categories"
+  theme = "themes"
   type = "types"

@@ -15,23 +15,19 @@
 				<a href="{{ "/" | relURL }}"><img src="{{ "/img/logo.jpg" | relURL }}" alt="Health Council of Canada Logo" title="Return to homepage"></a>
 				<h1>Archive</h1>
 			</div>
-			<div id="section-menu" class="menu">
-				<span>Sections:</span>
+			<div id="types-menu" class="menu">
+				<span>Types:</span>
 				<ul>
-					<li><a href="{{ "/publications" | relURL }}">Publications</a></li>
-					<li><a href="{{ "/presentations" | relURL }}">Presentations</a></li>
-					<li><a href="{{ "/webinars" | relURL }}">Webinars</a></li>
-					<li><a href="{{ "/videos" | relURL }}">Videos</a></li>
-					<li><a href="{{ "/podcasts" | relURL }}">Podcasts</a></li>
-					<li><a href="{{ "/press-releases" | relURL }}">Press Releases</a></li>
-					<li><a href="{{ "/other" | relURL }}">Other</a></li>
+				{{- range $type, $taxonomy := .Site.Taxonomies.types }}
+					<li><a href="{{ "/types/" | relURL}}{{ $type | urlize }}">{{ $type | humanize | title }}</a></li>
+				{{- end }}
 				</ul>
 			</div>
-			<div id="category-menu" class="menu">
+			<div id="themes-menu" class="menu">
 				<span>Themes:</span>
 				<ul>
-				{{ range $category, $taxonomy := .Site.Taxonomies.categories }}
-					<li><a href="{{ "/categories/" | relURL}}{{ $category | urlize }}">{{ $category | humanize | title }}</a></li>
-				{{ end }}
+				{{- range $theme, $taxonomy := .Site.Taxonomies.themes }}
+					<li><a href="{{ "/themes/" | relURL}}{{ $theme | urlize }}">{{ $theme | humanize | title }}</a></li>
+				{{- end }}
 				</ul>
 			</div>

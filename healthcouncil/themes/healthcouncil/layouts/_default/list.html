@@ -1,11 +1,12 @@
 {{ partial "header.html" . }}
 
+<h2>{{ .Title }}</h2>
+
 			<ul>
 			{{- $paginator := .Paginate .Data.Pages.ByDate.Reverse }}
 			{{ range $paginator.Pages }}
 			        <li>
-			                <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-			                <time>{{ .Date.Format "2006-01-02" }}</time>
+			                {{ partial "metadata.html" . }}
 			        </li>
 			{{ end }}
 			</ul>
