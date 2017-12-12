@@ -1,0 +1,117 @@
+/* noto-serif-regular - latin */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/noto-serif-v6-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Noto Serif'), local('NotoSerif'),
+       url('../fonts/noto-serif-v6-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/noto-serif-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/noto-serif-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/noto-serif-v6-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/noto-serif-v6-latin-regular.svg#NotoSerif') format('svg'); /* Legacy iOS */
+}
+
+/* arimo-regular - latin */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/arimo-v11-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Arimo Regular'), local('Arimo-Regular'),
+       url('../fonts/arimo-v11-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/arimo-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/arimo-v11-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/arimo-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/arimo-v11-latin-regular.svg#Arimo') format('svg'); /* Legacy iOS */
+}
+
+
+body {
+  font-family: 'Arimo', sans-serif;
+}
+
+#menu {
+  font-family: 'Noto Serif', serif;
+}
+
+
+h1, h2, h3 {
+  font-family: 'Noto Serif', serif;
+}
+
+#main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+#branding {
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  /*
+  justify-content: center;
+  */
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+#branding img {
+  max-width: 100%;
+}
+
+#branding h1 {
+  display: inline;
+  margin: 0px;
+}
+
+.menu {
+  display:flex;
+  align-items: baseline;
+  /*
+  justify-content: center;
+  */
+}
+
+.menu span {
+  margin-right: 1rem;
+}
+
+.menu ul {
+  padding: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+
+.menu li {
+  padding-right: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.menu li:last-child {
+  padding-right: 0px;
+}
+
+#homepage-notice {
+  border-left: thick solid #e4243b;
+  padding: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 600px) {
+
+  #branding {
+    justify-content: center;
+  }
+
+}

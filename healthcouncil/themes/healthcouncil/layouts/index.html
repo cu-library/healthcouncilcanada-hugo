@@ -1,0 +1,21 @@
+{{ partial "header.html" . }}
+			<div id="homepage-notice">
+				<p>The Health Council of Canada is no longer operating.</p>
+				<p>This archive remains online for reference, research or recordkeeping purposes by Carleton University Library.</p>
+				<p>Due to fundamental security issues, the Health Council of Canada website had to be taken offline.</p> 
+				<p>The Internet Archive has preserved copies available <a href="https://web.archive.org/web/*/healthcouncilcanada.ca">here</a>.</p>
+				<p>Content from the Health Innovation Portal has been added to <a href="http://www.accreditation.ca/leading-practices" target="_blank"> Accreditation Canada’s Leading Practices Database</a>.</p>
+			</div>		
+			<ul>
+			<div id="homepage-listing">
+			{{- $paginator := .Paginate .Data.Pages.ByDate.Reverse }}
+			{{ range $paginator.Pages }}
+			        <li>
+			                <h2><a href="{{ .Permalink }}">{{ .Title | title }}</a></h2>
+					<div>{{ .Section | humanize | title }}</div>
+			                <time>{{ .Date.Format "2006-01-02" }}</time>
+			        </li>
+			{{ end }}
+			</ul>
+{{ partial "pagination.html" . }}
+{{ partial "footer.html" . }}
