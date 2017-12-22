@@ -47,12 +47,8 @@ h1, h2, h3 {
 }
 
 #branding {
-  max-width: 900px;
   display: flex;
   align-items: center;
-  /*
-  justify-content: center;
-  */
   flex-wrap: wrap;
   margin-bottom: 1rem;
 }
@@ -66,12 +62,16 @@ h1, h2, h3 {
   margin: 0px;
 }
 
+#langlink {
+  display: flex;
+  flex: 2;
+  align-self: flex-end;
+  justify-content: flex-end;
+}
+
 .menu {
   display:flex;
   align-items: baseline;
-  /*
-  justify-content: center;
-  */
 }
 
 .menu span {

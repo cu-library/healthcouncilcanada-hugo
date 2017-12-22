@@ -1,0 +1,16 @@
+{{ partial "header.html" . }}
+
+<h2>{{ .Title }}</h2>
+<div>
+	<span>Type:</span>
+	{{ range $type := .Params.types }}<a href="{{ "/types/" | relURL }}{{ $type | urlize }}">{{ $type }}</a>{{ end }}
+</div>
+<div>
+	<span>Theme(s):</span>
+	{{ range $theme := .Params.themes }}<a href="{{ "/themes/" | relURL }}{{ $theme | urlize }}">{{ $theme }}</a>{{ end }}
+	</div>
+<time>{{ .Date.Format "2006-01-02" }}</time>
+
+{{ .Content }}
+
+{{ partial "footer.html" . }}

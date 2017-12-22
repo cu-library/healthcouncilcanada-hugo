@@ -1,3 +1,13 @@
 baseURL = "http://conseilcanadiendelasante.ca/"
 languageCode = "fr-CA"
 title = "Counseil canadien de la santé"
+theme = "conseilcanadiendelasante"
+disableKinds = ["RSS"]
+paginate = 25
+defaultContentLanguage = "fr-CA"
+preserveTaxonomyNames = true 
+removePathAccents = true
+
+[taxonomies]
+  theme = "themes"
+  type = "types"

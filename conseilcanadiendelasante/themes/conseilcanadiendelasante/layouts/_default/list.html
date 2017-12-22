@@ -1,0 +1,15 @@
+{{ partial "header.html" . }}
+
+<h2>{{ .Title }}</h2>
+
+			<ul>
+			{{- $paginator := .Paginate .Data.Pages.ByDate.Reverse }}
+			{{ range $paginator.Pages }}
+			        <li>
+			                {{ partial "metadata.html" . }}
+			        </li>
+			{{ end }}
+			</ul>
+			{{ partial "pagination.html" . }}
+
+{{ partial "footer.html" . }}

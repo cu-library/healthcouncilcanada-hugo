@@ -3,7 +3,6 @@ languageCode = "en-us"
 title = "Health Council Canada"
 theme = "healthcouncil"
 disableKinds = ["RSS"]
-sectionPagesMenu = "sections"
 paginate = 25
 
 [taxonomies]

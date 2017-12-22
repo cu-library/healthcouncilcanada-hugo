@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ .Title }} &middot; {{ .Site.Title }}</title>
+		{{.Hugo.Generator}}
+		<link rel="stylesheet" href="{{ "/css/normalize.css" | relURL }}">
+		<link rel="stylesheet" href="{{ "/css/style.css" | relURL }}">
+		<link rel="icon" href="{{ "/img/favicon.ico" | relURL }}">
+	</head>
+	<body>
+		<div id="main">
+			<div id="branding">
+				<a href="{{ "/" | relURL }}"><img src="{{ "/img/logo.jpg" | relURL }}"></a>
+				<h1>Archives</h1>
+				<div id="langlink">
+					<a href="https://healthcouncilcanada.ca">English</a>
+				</div>
+			</div>
+			<div id="types-menu" class="menu">
+				<span>Types:</span>
+				<ul>
+				{{- range $type, $taxonomy := .Site.Taxonomies.types }}
+					<li><a href="{{ "/types/" | relURL}}{{ $type | urlize }}">{{ $type }}</a></li>
+				{{- end }}
+				</ul>
+			</div>
+			<div id="themes-menu" class="menu">
+				<span>Thèmes:</span>
+				<ul>
+				{{- range $theme, $taxonomy := .Site.Taxonomies.themes }}
+					<li><a href="{{ "/themes/" | relURL}}{{ $theme | urlize }}">{{ $theme }}</a></li>
+				{{- end }}
+				</ul>
+			</div>
