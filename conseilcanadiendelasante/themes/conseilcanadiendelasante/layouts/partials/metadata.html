@@ -5,6 +5,6 @@
 						</div>
 						<div>
 							<span>Theme(s):</span>
-							{{ range $theme := .Params.themes }}<a href="{{ "/themes/" | relURL }}{{ $theme | urlize }}">{{ $theme }}</a>{{ end }}
+							{{ range $theme := .Params.themes }}<a class="themelink" href="{{ "/themes/" | relURL }}{{ $theme | urlize }}">{{ $theme }}</a>{{ end }}
 							</div>
 						<time>{{ .Date.Format "2006-01-02" }}</time>

@@ -108,6 +108,10 @@ h2, h3 {
   margin-bottom: 0.5rem;
 }
 
+.themelink {
+  padding-right: 1rem;
+}
+
 @media (max-width: 600px) {
 
   #branding {

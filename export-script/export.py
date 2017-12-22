@@ -208,7 +208,41 @@ def main_french(project_directory, all_files):
                         .replace("\xc2", "") \
                         .replace("d\\'information", "d'information") \
                         .replace("l\\'opinion", "l'opinion") \
-                        .replace("qualit&eacute;&eacute;", "qualit&eacute;")
+                        .replace("qualit&eacute;&eacute;", "qualit&eacute;") \
+                        .replace("dÃ©part", "départ") \
+                        .replace("santÃ©","santé") \
+                        .replace("SantÃ©","Santé") \
+                        .replace("Ã\xa0", "à") \
+                        .replace("rÃ©forme", "réforme") \
+                        .replace("systÃ¨me", "système") \
+                        .replace("axÃ©s", "axés") \
+                        .replace("rÃ©gions", "région") \
+                        .replace("Ã©loignÃ©es", "éloignée") \
+                        .replace("prÃ©vention", "prévention") \
+                        .replace("lâ\x80\x99innovation", "l'innovation") \
+                        .replace("lâ\x80\x99action", "l'action") \
+                        .replace("matiÃ¨re", "matiére") \
+                        .replace("AmÃ©lioration", "Amélioration") \
+                        .replace("qualitÃ©", "qualité") \
+                        .replace("sÃ©curitÃ©", "sécurité") \
+                        .replace("AccÃ¨s", "Accès") \
+                        .replace("accÃ¨s", "accès") \
+                        .replace("dâ\x80\x99attente", "d'attente") \
+                        .replace("Ã¢gÃ©es", "âgées") \
+                        .replace("vuln\xc3\xa9rables", "vulnérables") \
+                        .replace("lâ\x80\x99amÃ©lioration", "l'amélioration") \
+                        .replace("lâ\x80\x99approche", "l'approche") \
+                        .replace("lâ\x80\x99Economic", "l'Economic") \
+                        .replace("nâ\x80\x99avancent", "n'avancent") \
+                        .replace("stratÃ©giques", "stratégiques") \
+                        .replace("Ã\x89valuation", "Évaluation") \
+                        .replace("dÃ©cennie", "décennie") \
+                        .replace("Ã©chec", "échec") \
+                        .replace("vidÃ©os", "vidéos") \
+                        .replace("sÃ©rie", "série") \
+                        .replace("CommuniquÃ©", "Communiqués") \
+                        .replace("mÃªme", "même") 
+
                 title = re.sub(r":([A-Za-z])", ": \g<1>", title)
                 title = html.unescape(title)
             out.write("+++\n")
