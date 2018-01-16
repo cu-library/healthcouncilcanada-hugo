@@ -64,11 +64,13 @@ def main_english(project_directory, all_files):
         filename = os.path.join(hugo_content_directory, "{}.md".format(row['id']))
         themes_fixed = None
         if row['mnu1']:
-            themes_fixed = ",".join((set(["\""+x+"\"" for x in row['mnu1'].split(",")])))
+            themes = set(row['mnu1'].split(","))
+            themes = sorted(themes)
+            themes_fixed = ",".join(["\""+x+"\"" for x in themes])
 
         with open(filename, "w") as out:
             if row['rpttitle']:
-                title = row['rpttitle'].strip().replace("\r\n", " ").replace("\"", "\\\"") \
+                title = row['rpttitle'].strip().replace("\r\n", " ").replace("\"", "\\\"").title() \
                         .replace("<br />", " ") \
                         .replace("<Br />", " ") \
                         .replace("<Br>", " ") \
@@ -79,11 +81,12 @@ def main_english(project_directory, all_files):
                         .replace("s\xe2\x80\x99", "s'") \
                         .replace("People\xe2\x80\x99", "People'") \
                         .replace("M\xc3\xa9tis", "Métis") \
+                        .replace("M\xc9T", "Mét") \
                         .replace("Methodology\xe2\x84\xa2 -", "Methodology -") \
                         .replace("Health Care Renewal Matters\xe2\x80\xa6", "Health Care Renewal Matters...") \
                         .replace("Commissaire \xc3\xa0 la sant\xc3\xa9 et au bien-\xc3\xaatre du Qu\xc3\xa9bec", "Commissaire à la santé et au bien-être du Québec") \
                         .replace("\xc2", "") \
-                        .replace("What is th best way forward", "What is the best way forward") \
+                        .replace("What Is Th Best Way Forward", "What Is The Best Way Forward") \
                         .replace("'S", "'s") \
                         .replace("'L", "'l") \
                         .replace("De La", "de la") \
@@ -104,9 +107,9 @@ def main_english(project_directory, all_files):
                         .replace("Commissaire À La Santé Et Au Bien-Être Du Québec", "Commissaire à la santé et au bien-être du Québec") \
                         .replace("Econsultation", "eConsultation") \
                         .replace("EConsultation", "eConsultation")
+                print(title.encode('unicode-escape'))
                 title = re.sub(r":([A-Za-z])", ": \g<1>", title)
                 title = html.unescape(title)
-                title = title.title()
 
             out.write("+++\n")
             if row['rpttitle']:
@@ -182,7 +185,9 @@ def main_french(project_directory, all_files):
         filename = os.path.join(hugo_content_directory, "{}.md".format(row['id']))
         themes_fixed = None
         if row['mnu1']:
-            themes_fixed = ",".join((set(["\""+x+"\"" for x in row['mnu1'].split(",")])))
+            themes = set(row['mnu1'].split(","))
+            themes = sorted(themes)
+            themes_fixed = ",".join(["\""+x+"\"" for x in themes])
             themes_fixed = html.unescape(themes_fixed)
             themes_fixed = themes_fixed.replace("santÃ©", "santé") \
                            .replace("SantÃ©", "Santé") \
@@ -245,6 +250,7 @@ def main_french(project_directory, all_files):
 
                 title = re.sub(r":([A-Za-z])", ": \g<1>", title)
                 title = html.unescape(title)
+
             out.write("+++\n")
             if row['rpttitle']:
                 out.write("title = \"{}\"\n".format(title))
