@@ -25,6 +25,20 @@ def find_all_files(files_directory):
 
     return all_files
 
+def reset_content_directory(content_directory, index_title):
+    print("Deleting content from content directory ", content_directory ," ...")
+    shutil.rmtree(content_directory)
+    os.mkdir(content_directory)    
+    print("Done!")
+
+    print("Create _index.html file for homepage frontmatter...")
+    with open(os.path.join(content_directory, "_index.html"), "w") as index_file:
+        content = ["+++",
+                   "title = \"{}\"".format(index_title),
+                   "+++"]
+        index_file.writelines([x+"\n" for x in content])
+    print("Done!")
+
 def main_english(project_directory, all_files):
 
     print("---English Processing---")
@@ -32,23 +46,9 @@ def main_english(project_directory, all_files):
     print("Working from project directory", project_directory)
 
     hugo_content_directory = os.path.join(project_directory, "healthcouncil", "content")
+    reset_content_directory(hugo_content_directory, "Home")
 
-    print("Deleting content from content directory ", hugo_content_directory ," ...")
-    shutil.rmtree(hugo_content_directory)
-    os.mkdir(hugo_content_directory)
-    print("Done!")
-
-    print("Create _index.html file for homepage frontmatter...")
-    with open(os.path.join(hugo_content_directory, "_index.html"), "w") as index_file:
-        content = ["+++",
-                   "title = \"Home\"",
-                   "+++"]
-        index_file.writelines([x+"\n" for x in content])
-    print("Done!")
-
-    print("Connecting to Database...")
     hcc_db = MySQLdb.connect(user='hcc', db='hcc', passwd='Lq6jg9XyrcCUrN1ZFpUKSmM3YmW0vR4rrHfMo9Pg')
-    print("Done!")
 
     processed_files = set([])
 
@@ -62,14 +62,18 @@ def main_english(project_directory, all_files):
     print("Output content markdown...")
     for row in hcc_c:
         filename = os.path.join(hugo_content_directory, "{}.md".format(row['id']))
+        
         themes_fixed = None
         if row['mnu1']:
             themes = set(row['mnu1'].split(","))
             themes = sorted(themes)
             themes_fixed = ",".join(["\""+x+"\"" for x in themes])
 
-        with open(filename, "w") as out:
-            if row['rpttitle']:
+        file_escaped = ""
+        if row['file'] is not None:
+            file_escaped = row['file'].replace("_", "\_")
+
+        if row['rpttitle']:
                 title = row['rpttitle'].strip().replace("\r\n", " ").replace("\"", "\\\"").title() \
                         .replace("<br />", " ") \
                         .replace("<Br />", " ") \
@@ -107,13 +111,15 @@ def main_english(project_directory, all_files):
                         .replace("Commissaire À La Santé Et Au Bien-Être Du Québec", "Commissaire à la santé et au bien-être du Québec") \
                         .replace("Econsultation", "eConsultation") \
                         .replace("EConsultation", "eConsultation")
-                print(title.encode('unicode-escape'))
                 title = re.sub(r":([A-Za-z])", ": \g<1>", title)
                 title = html.unescape(title)
 
+        else:
+            title = row['file'][:-4]
+
+        with open(filename, "w") as out:
             out.write("+++\n")
-            if row['rpttitle']:
-                out.write("title = \"{}\"\n".format(title))
+            out.write("title = \"{}\"\n".format(title))
             if row['dte']:
                 out.write("date = {}\n".format(row['dte'].isoformat()))
             if themes_fixed:
@@ -122,15 +128,15 @@ def main_english(project_directory, all_files):
             out.write("+++\n")
 
             processed_files.add(row['file'])
-
+           
             if row['file'] in all_files:
-                out.write("[{file}](/files/{file})\n".format(file=row['file']))
+                out.write("[{file_escaped}](/files/{file})\n".format(file_escaped=file_escaped, file=row['file']))
             elif row['id'] == 320:
                 out.write("[Published as publication \"Press Release: Canadians Visiting Emergency Departments For Care, Instead Of Seeing Primary Health Care Providers\".](/publications/205/)\n")
             elif row['id'] == 284:
-                out.write("[{file}](/files/full/{file})\n".format(file=row['file']))
+                out.write("[{file_escaped}](/files/full/{file})\n".format(file_escaped=file_escaped, file=row['file']))
             elif row['id'] == 780:
-                out.write("[{file}](/files/full/{file})\n".format(file="780-TheSaskatchewanSurgicalInitiative.mp4"))
+                out.write("[{file_escaped}](/files/full/{file})\n".format(file_escaped=file_escaped, file="780-TheSaskatchewanSurgicalInitiative.mp4"))
             else:
                 processed_files.remove(row['file'])
                 print("Missing file", row['file'])
@@ -153,23 +159,9 @@ def main_french(project_directory, all_files):
     print("Working from project directory", project_directory)
 
     hugo_content_directory = os.path.join(project_directory, "conseilcanadiendelasante", "content")
-
-    print("Deleting content from content directory ", hugo_content_directory ," ...")
-    shutil.rmtree(hugo_content_directory)
-    os.mkdir(hugo_content_directory)
-    print("Done!")
-
-    print("Create _index.html file for homepage frontmatter...")
-    with open(os.path.join(hugo_content_directory, "_index.html"), "w") as index_file:
-        content = ["+++",
-                   "title = \"Page d'accueil\"",
-                   "+++"]
-        index_file.writelines([x+"\n" for x in content])
-    print("Done!")
-
-    print("Connecting to Database...")
+    reset_content_directory(hugo_content_directory, "Page d'accueil")
+    
     hcc_db = MySQLdb.connect(user='hcc', db='hcc_fr', passwd='Lq6jg9XyrcCUrN1ZFpUKSmM3YmW0vR4rrHfMo9Pg')
-    print("Done!")
 
     processed_files = set([])
 
@@ -183,6 +175,7 @@ def main_french(project_directory, all_files):
     print("Output content markdown...")
     for row in hcc_c:
         filename = os.path.join(hugo_content_directory, "{}.md".format(row['id']))
+        
         themes_fixed = None
         if row['mnu1']:
             themes = set(row['mnu1'].split(","))
@@ -197,63 +190,42 @@ def main_french(project_directory, all_files):
                            .replace("Soins Ã\xa0", "Soins à")
 
         type_fixed = html.unescape(row['hcc_file_typ'])
-        with open(filename, "w") as out:
-            if row['rpttitle']:
+
+        file_escaped = ""
+        if row['file'] is not None:
+            file_escaped = row['file'].replace("_", "\_")
+        
+        if row['rpttitle']:
                 title = row['rpttitle'].strip().replace("\r\n", " ").replace("\"", "\\\"") \
                         .replace("<br />", " ") \
                         .replace("<Br />", " ") \
                         .replace("<Br>", " ") \
                         .replace("<br>", " ") \
-                        .replace("Canadaâ\x80\x99", "Canada'") \
-                        .replace("St. Johnâ\x80\x99", "St. John'") \
-                        .replace(" \xe2\x80\x93 ", " - ") \
-                        .replace("s\xe2\x80\x99", "s'") \
-                        .replace("M\xc3\xa9tis", "Métis") \
-                        .replace("Commissaire \xc3\xa0 la sant\xc3\xa9 et au bien-\xc3\xaatre du Qu\xc3\xa9bec", "Commissaire à la santé et au bien-être du Québec") \
+                        .replace("\xe2\x80\x99", "'") \
+                        .replace("\xe2\x80\x93", "-") \
+                        .replace("\xc3\xa9", "é") \
+                        .replace("\xc3\xa0", "à") \
+                        .replace("\xc3\xaa", "ê") \
                         .replace("\xc2", "") \
-                        .replace("d\\'information", "d'information") \
-                        .replace("l\\'opinion", "l'opinion") \
+                        .replace("\\'", "'") \
                         .replace("qualit&eacute;&eacute;", "qualit&eacute;") \
-                        .replace("dÃ©part", "départ") \
-                        .replace("santÃ©","santé") \
-                        .replace("SantÃ©","Santé") \
-                        .replace("Ã\xa0", "à") \
-                        .replace("rÃ©forme", "réforme") \
-                        .replace("systÃ¨me", "système") \
-                        .replace("axÃ©s", "axés") \
-                        .replace("rÃ©gions", "région") \
-                        .replace("Ã©loignÃ©es", "éloignée") \
-                        .replace("prÃ©vention", "prévention") \
-                        .replace("lâ\x80\x99innovation", "l'innovation") \
-                        .replace("lâ\x80\x99action", "l'action") \
-                        .replace("matiÃ¨re", "matiére") \
-                        .replace("AmÃ©lioration", "Amélioration") \
-                        .replace("qualitÃ©", "qualité") \
-                        .replace("sÃ©curitÃ©", "sécurité") \
-                        .replace("AccÃ¨s", "Accès") \
-                        .replace("accÃ¨s", "accès") \
-                        .replace("dâ\x80\x99attente", "d'attente") \
-                        .replace("Ã¢gÃ©es", "âgées") \
-                        .replace("vuln\xc3\xa9rables", "vulnérables") \
-                        .replace("lâ\x80\x99amÃ©lioration", "l'amélioration") \
-                        .replace("lâ\x80\x99approche", "l'approche") \
-                        .replace("lâ\x80\x99Economic", "l'Economic") \
-                        .replace("nâ\x80\x99avancent", "n'avancent") \
-                        .replace("stratÃ©giques", "stratégiques") \
-                        .replace("Ã\x89valuation", "Évaluation") \
-                        .replace("dÃ©cennie", "décennie") \
-                        .replace("Ã©chec", "échec") \
-                        .replace("vidÃ©os", "vidéos") \
-                        .replace("sÃ©rie", "série") \
-                        .replace("CommuniquÃ©", "Communiqués") \
-                        .replace("mÃªme", "même") 
+                        .replace("\xc3\xa8", "è") \
+                        .replace("\xc3\xa2", "â") \
+                        .replace("Ã\x89", "É") \
+                        .replace("Ã®", "î") \
+                        .replace("Ã´", "ô") \
+                        .replace("<p class=\\\"p1\\\">", "") \
+                        .replace("</p>", "") 
 
                 title = re.sub(r":([A-Za-z])", ": \g<1>", title)
                 title = html.unescape(title)
 
+        else:
+            title = row['file'][:-4]
+
+        with open(filename, "w") as out:
             out.write("+++\n")
-            if row['rpttitle']:
-                out.write("title = \"{}\"\n".format(title))
+            out.write("title = \"{}\"\n".format(title))
             if row['dte']:
                 out.write("date = {}\n".format(row['dte'].isoformat()))
             if themes_fixed:
@@ -264,7 +236,7 @@ def main_french(project_directory, all_files):
             processed_files.add(row['file'])
 
             if row['file'] in all_files:
-                out.write("[{file}](/files/{file})\n".format(file=row['file']))
+                out.write("[{file_escaped}](/files/{file})\n".format(file_escaped=file_escaped, file=row['file']))
             else:
                 processed_files.remove(row['file'])
                 print("Missing file", row['file'])

@@ -728,12 +728,12 @@
   </url>
   
   <url>
-    <loc>https://healthcouncilcanada.ca/358/</loc>
+    <loc>https://healthcouncilcanada.ca/355/</loc>
     <lastmod>2012-04-17T00:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://healthcouncilcanada.ca/355/</loc>
+    <loc>https://healthcouncilcanada.ca/358/</loc>
     <lastmod>2012-04-17T00:00:00-04:00</lastmod>
   </url>
   
@@ -888,12 +888,12 @@
   </url>
   
   <url>
-    <loc>https://healthcouncilcanada.ca/235/</loc>
+    <loc>https://healthcouncilcanada.ca/234/</loc>
     <lastmod>2011-12-15T00:00:00-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://healthcouncilcanada.ca/234/</loc>
+    <loc>https://healthcouncilcanada.ca/235/</loc>
     <lastmod>2011-12-15T00:00:00-05:00</lastmod>
   </url>
   
@@ -1688,12 +1688,12 @@
   </url>
   
   <url>
-    <loc>https://healthcouncilcanada.ca/33/</loc>
+    <loc>https://healthcouncilcanada.ca/89/</loc>
     <lastmod>2009-11-12T00:00:00-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://healthcouncilcanada.ca/89/</loc>
+    <loc>https://healthcouncilcanada.ca/33/</loc>
     <lastmod>2009-11-12T00:00:00-05:00</lastmod>
   </url>
   
@@ -2341,10 +2341,6 @@
   </url>
   
   <url>
-    <loc>https://healthcouncilcanada.ca/334/</loc>
-  </url>
-  
-  <url>
     <loc>https://healthcouncilcanada.ca/themes/aboriginal-health/</loc>
     <lastmod>2013-11-28T00:00:00-05:00</lastmod>
     <priority>0</priority>
@@ -2366,6 +2362,10 @@
     <loc>https://healthcouncilcanada.ca/themes/electronic-health-records/</loc>
     <lastmod>2014-01-28T00:00:00-05:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://healthcouncilcanada.ca/334/</loc>
   </url>
   
   <url>
